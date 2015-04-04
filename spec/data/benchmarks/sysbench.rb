@@ -1,6 +1,6 @@
 require "cwb"
 
-class Sysbench < CwbBenchmark
+class Sysbench < Cwb::Benchmark
   def cwb
     @cwb
   end

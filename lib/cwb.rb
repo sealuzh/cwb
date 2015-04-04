@@ -1,5 +1,5 @@
 require "cwb/version"
 
 module Cwb
-  require "cwb/cwb_benchmark"
+  require "cwb/benchmark"
 end
