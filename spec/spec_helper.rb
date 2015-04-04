@@ -2,7 +2,11 @@ $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require "cwb"
 
 # Add gem root directory to LOAD_PATH
-$LOAD_PATH << File.join(File.dirname(__FILE__), '..')
+$LOAD_PATH << Cwb::root
+
+def spec_data
+  File.join(Cwb::root, "spec", "data")
+end
 
 # Requires supporting ruby files spec/data/ and its subdirectories.
 Dir["spec/data/**/*.rb"].each { |f| require f }
