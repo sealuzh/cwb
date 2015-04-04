@@ -1,6 +1,8 @@
-# Cwb
+# CWB
 
-TODO: Write a gem description
+Provides Cloud WorkBench (CWB) infrastructure for cloud VMs and local testing.
+CWB helps you implement your own suites of benchmarks and optionally integrates them with the CWB framework.
+See https://github.com/sealuzh/cloud-workbench
 
 ## Installation
 

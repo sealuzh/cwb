@@ -8,9 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Cwb::VERSION
   spec.authors       = ["Joel Scheuner"]
   spec.email         = ["joel.scheuner.dev@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Provides Cloud WorkBench (CWB) infrastructure for cloud VMs and local testing.}
+  spec.homepage      = "https://github.com/sealuzh/cloud-workbench"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
