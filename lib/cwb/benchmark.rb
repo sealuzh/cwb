@@ -7,15 +7,6 @@ module Cwb
       @working_dir = working_dir
     end
 
-    def pre_execute_suite
-      
-    end
-
-    # Benchmark suites may overwrite this method if they want to provide their own lifecycle management (i.e., communication with the cwb-server)
-    def execute_suite
-      
-    end
-
     def execute_in_working_dir
       Dir.chdir @working_dir do
         execute

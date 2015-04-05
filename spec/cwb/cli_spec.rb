@@ -1,20 +1,36 @@
 require "spec_helper"
 
+def init_paths(benchmarks_path)
+  let(:benchmarks_path) { benchmarks_path }
+  let(:sysbench_path) { File.join(benchmarks_path, "sysbench" , "sysbench.rb") }
+  let(:sysbench_msg) { "execute sysbench in #{File.dirname(sysbench_path)}\n" }
+  let(:shell_example_path) { File.join(benchmarks_path, "shell-example" , "shell_example.rb") }
+  let(:shell_example_msg) { "execute shell-example in #{File.dirname(shell_example_path)}\n" }
+  let(:my_custom_benchmark_path) { File.join(benchmarks_path, "my-custom-benchmark", "my_custom_benchmark.rb") }
+  let(:my_custom_benchmark_msg) { "execute my-custom-benchmark in #{File.dirname(my_custom_benchmark_path)}\n" }
+end
+
 RSpec.describe Cwb::Cli do
   let(:cli) { Cwb::Cli.new }
-  let(:benchmarks_path) { File.join(spec_data, "benchmarks") }
-  let(:sysbench_path) { File.join(benchmarks_path, "sysbench" , "sysbench.rb") }
-  let(:shell_example_path) { File.join(benchmarks_path, "shell-example" , "shell_example.rb") }
-  
+  init_paths(File.join(spec_data, "benchmarks"))
+
   context "file" do
     it "should invoke the execute method of the given benchmark" do
-      expect { cli.execute(sysbench_path) }.to output("execute sysbench in #{File.dirname(sysbench_path)}\n").to_stdout
+      expect { cli.execute(sysbench_path) }.to output(sysbench_msg).to_stdout
     end
   end
-  
+
   context "directory" do
     it "should execute all enabled benchmarks (i.e., contained in the benchmarks.txt) in correct order" do
-      expect { cli.execute(benchmarks_path) }.to output("execute sysbench in #{File.dirname(sysbench_path)}\nexecute shell-example in #{File.dirname(shell_example_path)}\n").to_stdout
+      expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + shell_example_msg).to_stdout
+    end
+  end
+
+  context "directory with suite" do
+    init_paths(File.join(spec_data, "benchmarks-suite"))
+
+    it "should execute the benchmarks of the provided suite in correct order" do
+      expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + my_custom_benchmark_msg).to_stdout
     end
   end
 end

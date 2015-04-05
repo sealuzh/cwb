@@ -1,12 +1,11 @@
 require "thor"
-require "cwb/benchmark_suite"
+require "cwb/parser_factory"
 
 module Cwb
   class Cli < Thor
     desc "execute BENCHMARK_FILE|BENCHMARK_DIRECTORY", "execute a benchmark or an entire collection of benchmark in a given directory with cwb"
     def execute(path)
-      benchmark_suite = Cwb::BenchmarkSuite.new(path)
-      benchmark_suite.execute
+      Cwb::ParserFactory.build(path).execute
     rescue => error
       puts "Error: #{error.message}"
       raise error
@@ -14,7 +13,7 @@ module Cwb
     
     desc "validates BENCHMARK_FILE|BENCHMARK_DIRECTORY", "performs basic validation of the class files and directory structure."
     def validate(path)
-      #TODO
+      Cwb::ParserFactory.build(path).validate
     end
   end
 end

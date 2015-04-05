@@ -5,5 +5,6 @@ module Cwb
     File.expand_path '../..', __FILE__
   end
   require "cwb/benchmark"
+  require "cwb/benchmark_suite"
   require "cwb/cli"
 end

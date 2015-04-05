@@ -1,11 +1,15 @@
 require "cwb"
 
 class MyCustomBenchmark < Cwb::Benchmark
+  def cwb
+    @cwb
+  end
+  
   def execute
-    fail "Disabled benchmark should never be executed"
+    puts "execute my-custom-benchmark in #{`pwd`}"
   end
   
   def cwb_metrics
-    %w(metric_from_disabled_benchmark)
+    %w(cpu_model_name)
   end
 end
