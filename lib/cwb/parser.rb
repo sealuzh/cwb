@@ -1,5 +1,3 @@
-require "active_support/core_ext/string/inflections"
-
 module Cwb
   class Parser
     def initialize(path)

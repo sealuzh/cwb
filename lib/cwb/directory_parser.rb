@@ -28,7 +28,7 @@ module Cwb
         cwb_benchmarks = []
         benchmarks.each do |benchmark|
           stripped_benchmark = benchmark
-          cwb_benchmarks << benchmark_class(stripped_benchmark).new(working_dir(stripped_benchmark))
+          cwb_benchmarks << Cwb.const_get(benchmark_class_name(stripped_benchmark)).new(working_dir(stripped_benchmark))
         end
         cwb_benchmarks
       end
@@ -37,8 +37,8 @@ module Cwb
         File.join(@path, benchmark)
       end
 
-      def benchmark_class(benchmark)
-        benchmark.underscore.camelize.constantize
+      def benchmark_class_name(benchmark)
+        benchmark.underscore.camelize
       end
 
       def require_all(benchmarks)

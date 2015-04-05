@@ -3,8 +3,8 @@ require "cwb/client"
 module Cwb
   class Benchmark
     def initialize(working_dir = Dir.pwd)
-      @cwb = Cwb::Client.new
       @working_dir = working_dir
+      @cwb = Cwb::Client.new
     end
 
     def execute_in_working_dir
