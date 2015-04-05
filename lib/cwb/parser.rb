@@ -4,13 +4,20 @@ module Cwb
       @path = File.expand_path(path)
     end
 
-    def validate
-      fail "Not implemented in abstract base class"
+    def init_config(dir)
+      if Cwb::Config.exists_in_dir?(dir)
+        config = Cwb::Config.from_dir(dir)
+        Cwb::Client.instance.reconfigure(config)
+      end
     end
 
     def execute
       validate
       delegate_execution
+    end
+
+    def validate
+      fail "Not implemented in abstract base class"
     end
 
     def delegate_execution

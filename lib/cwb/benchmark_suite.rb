@@ -1,7 +1,7 @@
 module Cwb
   class BenchmarkSuite
     def initialize(working_dir = Dir.pwd)
-      @cwb = Cwb::Client.new
+      @cwb = Cwb::Client.instance
       @working_dir = working_dir
     end
 

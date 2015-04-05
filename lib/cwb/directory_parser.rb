@@ -3,6 +3,11 @@ require "cwb/benchmark_suite"
 
 module Cwb
   class DirectoryParser < Parser
+    def initialize(path)
+      super(path)
+      init_config(path)
+    end
+
     def validate
       check_file_exists(benchmarks_file_path)
       require_all(read_lines(benchmarks_file_path))
