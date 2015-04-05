@@ -18,6 +18,16 @@ RSpec.describe Cwb::Cli do
     it "should invoke the execute method of the given benchmark" do
       expect { cli.execute(sysbench_path) }.to output(sysbench_msg).to_stdout
     end
+
+    it "should invoke the execute method when called from the command line" do
+      expect(`cd / && #{File.join(Cwb::root, "bin", "cwb")} execute #{sysbench_path}`).to eq(sysbench_msg)
+      expect($?.exitstatus).to eq(0)
+    end
+
+    it "should invoke the execute method when called from the command line via ruby" do
+      expect(`cd #{File.dirname(sysbench_path)} && ruby -I "#{File.join(Cwb::root, "lib")}" -r "#{sysbench_path}" -e "Sysbench.new.execute"`).to eq(sysbench_msg)
+      expect($?.exitstatus).to eq(0)
+    end
   end
 
   context "directory" do
