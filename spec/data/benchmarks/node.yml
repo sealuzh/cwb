@@ -1,6 +1,7 @@
 ---
 cwb:
-  server: localhost
+  provider_name: virtualbox
+  provider_instance_id: cwb-001-002
   repetitions: 1
   metrics:
   - cpu_model_name

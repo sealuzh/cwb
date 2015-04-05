@@ -16,7 +16,7 @@ module Cwb
       self.new(YAML.load_file(file))
     end
 
-    def initialize(node = nil)
+    def initialize(node = {})
       @node = node
     end
 
@@ -24,9 +24,31 @@ module Cwb
       @node.deep_fetch(*keys, default: "")
     end
 
-    private
-    def self.config_file(dir)
-      File.join(dir, "node.yml")
+    # Determines whether all strictly required attributes
+    # that are necessary for communication with the cwb-server
+    # are available.
+    def complete?
+      args = [server, provider_name, provider_instance_id]
+      args.map { |value| value.empty? }.none?
     end
+
+    def server
+      deep_fetch("cwb", "server")
+    end
+
+    def provider_name
+      deep_fetch("cwb", "provider_name")
+    end
+
+    def provider_instance_id
+      deep_fetch("cwb", "provider_instance_id")
+    end
+
+
+    private
+
+      def self.config_file(dir)
+        File.join(dir, "node.yml")
+      end
   end
 end

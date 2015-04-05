@@ -6,6 +6,14 @@ module Cwb
     end
 
     def execute_suite(cwb_benchmarks)
+      execute_all(cwb_benchmarks)
+      @cwb.notify_finished_execution
+    rescue => error
+      @cwb.notify_failed_execution(error.message)
+      raise error
+    end
+
+    def execute_all(cwb_benchmarks)
       cwb_benchmarks.each do |cwb_benchmark|
         cwb_benchmark.execute_in_working_dir
       end

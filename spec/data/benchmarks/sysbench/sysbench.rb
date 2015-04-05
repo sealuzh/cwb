@@ -6,7 +6,11 @@ class Sysbench < Cwb::Benchmark
   end
 
   def existing_attribute
-    @cwb.deep_fetch("sysbench", "commands")
+    @cwb.deep_fetch("sysbench", "commands", "1")
+  end
+
+  def non_existing_attribute
+    @cwb.deep_fetch("some", "non_existing", "attribute")
   end
 
   def execute

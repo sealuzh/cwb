@@ -2,6 +2,7 @@ module Cwb
   class Parser
     def initialize(path)
       @path = File.expand_path(path)
+      init_config(@path)
     end
 
     def init_config(dir)

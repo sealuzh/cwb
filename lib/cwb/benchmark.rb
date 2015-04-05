@@ -15,7 +15,7 @@ module Cwb
 
     # Intended to override
     def execute
-      
+      # Empty benchmarks do nothing
     end
   end
 end

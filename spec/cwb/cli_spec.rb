@@ -12,15 +12,16 @@ end
 
 RSpec.describe Cwb::Cli do
   let(:cli) { Cwb::Cli.new }
+  let(:success_msg) { "Notify finished postprocessing.\n" }
   init_paths(File.join(spec_data, "benchmarks"))
 
   context "file" do
     it "should invoke the execute method of the given benchmark" do
-      expect { cli.execute(sysbench_path) }.to output(sysbench_msg).to_stdout
+      expect { cli.execute(sysbench_path) }.to output(sysbench_msg + success_msg).to_stdout
     end
 
     it "should invoke the execute method when called from the command line" do
-      expect(`cd / && #{File.join(Cwb::root, "bin", "cwb")} execute #{sysbench_path}`).to eq(sysbench_msg)
+      expect(`cd / && #{File.join(Cwb::root, "bin", "cwb")} execute #{sysbench_path}`).to eq(sysbench_msg + success_msg)
       expect($?.exitstatus).to eq(0)
     end
 
@@ -32,7 +33,7 @@ RSpec.describe Cwb::Cli do
 
   context "directory" do
     it "should execute all enabled benchmarks (i.e., contained in the benchmarks.txt) in correct order" do
-      expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + shell_example_msg).to_stdout
+      expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + shell_example_msg + success_msg).to_stdout
     end
   end
 
@@ -40,7 +41,7 @@ RSpec.describe Cwb::Cli do
     init_paths(File.join(spec_data, "benchmarks-suite"))
 
     it "should execute the benchmarks of the provided suite in correct order" do
-      expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + my_custom_benchmark_msg).to_stdout
+      expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + my_custom_benchmark_msg + success_msg).to_stdout
     end
   end
 end
