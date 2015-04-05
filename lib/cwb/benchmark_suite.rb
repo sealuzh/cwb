@@ -17,11 +17,10 @@ module Cwb
     def handle_directory
       check_benchmarks_file
       benchmarks = IO.readlines benchmarks_file_path
-      benchmark_files = benchmark_files(benchmarks)
-      require_all(benchmark_files)
+      require_all(benchmarks)
       cwb_benchmarks = init_classes(benchmarks)
-      cwb_benchmarks.each_with_index do |cwb_benchmark, index|
-        execute_in_working_dir(cwb_benchmark, benchmark_files[index])
+      cwb_benchmarks.each do |cwb_benchmark|
+        cwb_benchmark.execute_in_working_dir
       end
     end
     
@@ -31,44 +30,34 @@ module Cwb
 
       filename = File.basename(@path, ".rb")
       clazz = filename.camelize.constantize
-      cwb_benchmark = clazz.new
-      execute_in_working_dir(cwb_benchmark, full_path)
+      cwb_benchmark = clazz.new(File.dirname(full_path))
+      cwb_benchmark.execute_in_working_dir
     end
 
     private
 
-    def execute_in_working_dir(cwb_benchmark, benchmark_file)
-      parent_dir = File.dirname(benchmark_file)
-      Dir.chdir parent_dir do
-        cwb_benchmark.execute
-      end
-    end
-
     def init_classes(benchmarks)
       cwb_benchmarks = []
       benchmarks.each do |benchmark|
-        cwb_benchmarks << benchmark_class(benchmark).new
+        stripped_benchmark = benchmark.strip
+        cwb_benchmarks << benchmark_class(stripped_benchmark).new(working_dir(stripped_benchmark))
       end
       cwb_benchmarks
     end
 
-    def benchmark_class(benchmark)
-      benchmark.underscore.strip.camelize.constantize
+    def working_dir(benchmark)
+      File.join(@path, benchmark)
     end
 
-    def benchmark_files(benchmarks)
-      benchmark_files = []
+    def benchmark_class(benchmark)
+      benchmark.underscore.camelize.constantize
+    end
+
+    def require_all(benchmarks)
       benchmarks.each do |benchmark|
         class_file = benchmark_file(benchmark.strip)
         check_benchmark_file_exists(class_file)
-        benchmark_files << class_file
-      end
-      benchmark_files
-    end
-
-    def require_all(benchmark_files)
-      benchmark_files.each do |benchmark_file|
-        require_relative benchmark_file
+        require_relative class_file
       end
     end
 

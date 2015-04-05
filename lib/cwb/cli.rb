@@ -11,5 +11,10 @@ module Cwb
       puts "Error: #{error.message}"
       raise error
     end
+    
+    desc "validates BENCHMARK_FILE|BENCHMARK_DIRECTORY", "performs basic validation of the class files and directory structure."
+    def validate(path)
+      #TODO
+    end
   end
 end
