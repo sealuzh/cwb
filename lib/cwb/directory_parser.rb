@@ -45,7 +45,7 @@ module Cwb
         benchmarks.each do |benchmark|
           class_file = benchmark_file(benchmark)
           check_file_exists(class_file)
-          require_relative class_file
+          require class_file
         end
       end
 
