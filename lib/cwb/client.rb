@@ -41,7 +41,7 @@ module Cwb
         submit_remote_metrics(metric_definition_id, csv_file)
       else
         CSV.foreach(csv_file) do |row|
-          puts row
+          puts row.join(',')
         end
       end
     end

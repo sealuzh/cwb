@@ -8,11 +8,13 @@ def init_paths(benchmarks_path)
   let(:shell_example_msg) { "execute shell-example in #{File.dirname(shell_example_path)}\n" }
   let(:my_custom_benchmark_path) { File.join(benchmarks_path, "my-custom-benchmark", "my_custom_benchmark.rb") }
   let(:my_custom_benchmark_msg) { "execute my-custom-benchmark in #{File.dirname(my_custom_benchmark_path)}\n" }
+  let(:failing_benchmark_path) { File.join(benchmarks_path, "disabled", "disabled.rb") }
 end
 
 RSpec.describe Cwb::Cli do
   let(:cli) { Cwb::Cli.new }
   let(:success_msg) { "Notify finished postprocessing.\n" }
+  let(:error_msg) { "Notify failure on running: " }
   init_paths(File.join(spec_data, "benchmarks"))
 
   context "file" do
@@ -34,6 +36,10 @@ RSpec.describe Cwb::Cli do
   context "directory" do
     it "should execute all enabled benchmarks (i.e., contained in the benchmarks.txt) in correct order" do
       expect { cli.execute(benchmarks_path) }.to output(sysbench_msg + shell_example_msg + success_msg).to_stdout
+    end
+
+    it "should notify a failed on running message on error" do
+      expect { cli.execute(failing_benchmark_path) }.to output(/#{error_msg}/).to_stdout & raise_error
     end
   end
 
