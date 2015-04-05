@@ -1,6 +1,9 @@
 require "spec_helper"
 
 RSpec.describe Cwb::Benchmark do
+  let(:test_config) { File.join(spec_data, "benchmarks") }
+  before { Cwb::Client.instance.reconfigure(Cwb::Config.from_dir(test_config)) }
+
   context "sublasses" do
     let(:sysbench) { Sysbench.new }
 
