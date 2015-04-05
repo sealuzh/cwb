@@ -1,5 +1,16 @@
-require 'simplecov'
-SimpleCov.start
+require "simplecov"
+class LineFilter < SimpleCov::Filter
+  def matches?(source_file)
+    source_file.lines.count < filter_argument
+  end
+end
+SimpleCov.start do
+  add_group "Long files" do |src_file|
+    src_file.lines.count > 100
+  end
+  add_group "Short files", LineFilter.new(5)
+  add_filter "spec/data"
+end
 
 require "pry"
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
