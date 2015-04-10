@@ -23,7 +23,7 @@ RSpec.describe Cwb::Cli do
     end
 
     it "should invoke the execute method when called from the command line" do
-      expect(`cd / && #{File.join(Cwb::root, "bin", "cwb")} execute #{sysbench_path}`).to eq(sysbench_msg + success_msg)
+      expect(`#{File.join(Cwb::root, "bin", "cwb")} execute #{sysbench_path}`).to eq(sysbench_msg + success_msg)
       expect($?.exitstatus).to eq(0)
     end
 
