@@ -20,6 +20,8 @@ module Cwb
       @node = node
     end
 
+    # TODO: Consider returning nil as default value.
+    # The current deep_fetch implementation doesn't support { default: nil }
     def deep_fetch(*keys)
       @node.deep_fetch(*keys, default: "")
     end
@@ -37,11 +39,11 @@ module Cwb
     end
 
     def provider_name
-      deep_fetch("cwb", "provider_name")
+      deep_fetch("benchmark", "provider_name")
     end
 
     def provider_instance_id
-      deep_fetch("cwb", "provider_instance_id")
+      deep_fetch("benchmark", "provider_instance_id")
     end
 
 
