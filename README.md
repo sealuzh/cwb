@@ -21,6 +21,7 @@ See https://github.com/sealuzh/cloud-workbench
   * Missing inheritance
   * No #execute method present
 * Write test that covers reading config from node.yml => especially the @config.deep_fetch behavior/issue!
+
 ## Installation
 
 Add this line to your application's Gemfile:
