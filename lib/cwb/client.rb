@@ -29,6 +29,7 @@ module Cwb
 
     # Securly access nested attributes.
     # Example: @cwb.deep_fetch("sysbench", "commands")
+    # Returns an empty string if attribute cannot be found
     def deep_fetch(*keys)
       @config.deep_fetch(*keys)
     end

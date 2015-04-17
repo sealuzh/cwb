@@ -8,8 +8,4 @@ class ShellExample < Cwb::Benchmark
   def execute
     puts "execute shell-example in #{`pwd`}"
   end
-  
-  def cwb_metrics
-    %w(cpu_model_name)
-  end
 end

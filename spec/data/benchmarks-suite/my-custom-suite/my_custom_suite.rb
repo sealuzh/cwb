@@ -11,8 +11,4 @@ class MyCustomSuite < Cwb::BenchmarkSuite
     @cwb.notify_finished_execution
     # @cwb.execute(Sysbench.new)
   end
-  
-  def cwb_metrics
-    %w()
-  end
 end

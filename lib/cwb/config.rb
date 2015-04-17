@@ -20,10 +20,8 @@ module Cwb
       @node = node
     end
 
-    # TODO: Consider returning nil as default value.
-    # The current deep_fetch implementation doesn't support { default: nil }
     def deep_fetch(*keys)
-      @node.deep_fetch(*keys, default: "")
+      @node.deep_fetch(*keys, default: '')
     end
 
     # Determines whether all strictly required attributes
