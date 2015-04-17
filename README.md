@@ -16,11 +16,15 @@ See https://github.com/sealuzh/cloud-workbench
   * Client gem 'cwb'
     * INPUT: file or directory path => parse node (i.e. cwb.base_dir); [benchmark name]
     * OUTPUT: general cwb paths (i.e. config, base_dir); [benchmark specific paths (i.e. class_file_path)]
+* Consider checking cwb-server connection before starting the execution because it doesn't make sense to start a benchmark if the cwb-server is not reachable
 * Validations including meaningful error messages on `cwb validate`
   * Wrong class name
   * Missing inheritance
   * No #execute method present
 * Write test that covers reading config from node.yml => especially the @config.deep_fetch behavior/issue!
+* Faraday DOC links:
+  * Github: https://github.com/lostisland/faraday
+  * Changes in v0.8 (separated middleware e.g., for JSON): https://github.com/lostisland/faraday_middleware/wiki/Changes-0.8
 
 ## Installation
 
