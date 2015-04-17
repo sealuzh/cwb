@@ -18,11 +18,14 @@ describe HashExtension do
     it "raises KeyError if the provided keys do not exist" do
       expect{ hash.deep_fetch("webserver","users","jdoe","password") }.to raise_error(KeyError)
     end
-    it "returns the provided default value if the key does not exist" do
+    it "returns the provided default value (String) if the key does not exist" do
       expect(hash.deep_fetch("webserver","users","jdoe","password", default: "Key Missing")).to eq("Key Missing")
     end
-    it "returns the provided default value if the key does not exist" do
+    it "returns the provided default value (boolean) if the key does not exist" do
       expect(hash.deep_fetch("webserver","users","jdoe","password", default: false)).to be false
+    end
+    it "returns the provided default value (nil) if the key does not exist" do
+      expect(hash.deep_fetch("webserver","users","jdoe","password", default: nil)).to be nil
     end
   end
 
