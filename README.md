@@ -1,7 +1,7 @@
-# CWB
+# Cloud WorkBench Client (CWB Client)
 
-Provides Cloud WorkBench (CWB) infrastructure for cloud VMs and local testing.
-CWB helps you implement your own suites of benchmarks and optionally integrates them with the CWB framework.
+Command line utility [cwb-client] acts as the client library in cloud VMs and allows for local testing.
+CWB Client helps you implement your own suites of benchmarks and optionally integrates them with the CWB framework.
 See https://github.com/sealuzh/cloud-workbench
 
 ## Installation
