@@ -18,6 +18,7 @@ module Cwb
 
     # Reconfigures the Client with a configuration object against a cwb-server.
     # @api private
+    # @return [void]
     def reconfigure(config)
       @config = config
       if @config.complete?
@@ -30,8 +31,11 @@ module Cwb
     end
 
     # Securly access nested attributes.
-    # @example @cwb.deep_fetch("sysbench", "commands")
-    # @return an empty string if attribute cannot be found
+    # @example Acess benchmark attribute hash
+    #          @cwb.deep_fetch("sysbench", "cli_options")
+    # @example Access node attribute (collected by ohai)
+    #          @cwb.deep_fetch("cpu", "0", "model_name")
+    # @return [String] an empty string if attribute cannot be found
     def deep_fetch(*keys)
       @config.deep_fetch(*keys)
     end
@@ -40,6 +44,7 @@ module Cwb
     # @param metric_definition_id [String] the name of the CWB metric
     # @param time [Integer] the UNIX timestamp when the metric was captured
     # @param value [String (nominal-scale) or Numeric (otherwise)] the value of the metric
+    # @return [void]
     def submit_metric(metric_definition_id, time, value)
       if @config.complete?
         submit_remote_metric(metric_definition_id, time, value)
@@ -54,6 +59,7 @@ module Cwb
     # @note the csv file must:
     #       * have two columns: 'time' [Integer], 'value' [String (nominal-scale) or Numeric (otherwise)]
     #       * be formatted without headers
+    # @return [void]
     def submit_metrics(metric_definition_id, csv_file)
       if @config.complete?
         submit_remote_metrics(metric_definition_id, csv_file)
@@ -66,6 +72,7 @@ module Cwb
 
     # Notifies the cwb-server that the benchmark successfully completed.
     # @note The cwb-server will shutdown all VMs of this executions.
+    # @return [void]
     def notify_finished_execution
       if @config.complete?
         post_notify("/#{VM_INSTANCE}/complete_postprocessing", true)
@@ -76,6 +83,7 @@ module Cwb
 
     # Notifies the cwb-server that the benchmark failed during the execution
     # @note The cwb-server will shutdown all VMs of this execution after a timeout (~15').
+    # @return [void]
     def notify_failed_execution(message = "")
       if @config.complete?
         post_notify("/#{VM_INSTANCE}/complete_benchmark", false, message)
