@@ -7,9 +7,8 @@
 [Cwb::Client Docs](http://www.rubydoc.info/gems/cwb/Cwb/Client)
 
 
-Command line utility [cwb-client] acts as the client library in cloud VMs and allows for local testing (if not configured against a cwb-server).
+This command line utility [cwb-client] consitutes the cwb client library in cloud VMs and supports local benchmark testing. See https://github.com/sealuzh/cloud-workbench
 CWB Client helps you implement your own suites of benchmarks and optionally integrates them with the CWB framework.
-See https://github.com/sealuzh/cloud-workbench
 
 ## Installation
 
