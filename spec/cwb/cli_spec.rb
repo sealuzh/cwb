@@ -14,7 +14,7 @@ end
 RSpec.describe Cwb::Cli do
   let(:cli) { Cwb::Cli.new }
   let(:success_msg) { "Notify finished postprocessing.\n" }
-  let(:error_msg) { "Notify failure on running: " }
+  let(:error_msg) { "Notify failure on running" }
   init_paths(File.join(spec_data, "benchmarks"))
 
   context "file" do

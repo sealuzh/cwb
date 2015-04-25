@@ -14,6 +14,7 @@ module Cwb
     end
 
     # Intended to override
+    # @api
     def execute
       # Empty benchmarks do nothing
     end
