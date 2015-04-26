@@ -27,6 +27,22 @@ Or install it yourself as:
     gem install cwb
 
 
+## Development
+
+### Run Tests
+
+Guard will watch your files and automatically run the tests. Type `all` to run all tests.
+
+```bash
+guard
+```
+
+### Publish to RubyGems (only owners)
+
+```bash
+gem push cwb-0.1.X.gem
+```
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/cwb/fork )
