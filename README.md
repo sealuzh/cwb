@@ -1,28 +1,31 @@
 # Cloud WorkBench Client (CWB Client)
 
-[![Gem Version](https://badge.fury.io/rb/cwb.svg)](https://rubygems.org/gems/cwb)
-
-[![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://www.rubydoc.info/gems/cwb/)
-
-[Cwb::Client Docs](http://www.rubydoc.info/gems/cwb/Cwb/Client)
+This command line utility [cwb-client] consitutes the cwb client library in cloud VMs and supports local benchmark testing.
+CWB Client helps you implementing your own suites of benchmarks and optionally integrates them with the CWB framework.
 
 
-This command line utility [cwb-client] consitutes the cwb client library in cloud VMs and supports local benchmark testing. See https://github.com/sealuzh/cloud-workbench
-CWB Client helps you implement your own suites of benchmarks and optionally integrates them with the CWB framework.
+## Quicklinks
+* CWB Server: https://github.com/sealuzh/cloud-workbench
+* CWB Cookbook *(Chef)*: https://github.com/sealuzh/cwb-benchmarks/tree/master/cwb
+* [![Yard Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://www.rubydoc.info/gems/cwb/)
+    * [Cwb::Client Docs](http://www.rubydoc.info/gems/cwb/Cwb/Client)
+* [![Gem Version](https://badge.fury.io/rb/cwb.svg)](https://rubygems.org/gems/cwb)
+
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'cwb'
+    gem 'cwb', '~> 0.1.0'
 
 And then execute:
 
-    $ bundle
+    bundle
 
 Or install it yourself as:
 
-    $ gem install cwb
+    gem install cwb
+
 
 ## Contributing
 
