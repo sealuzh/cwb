@@ -39,8 +39,12 @@ guard
 
 ### Publish to RubyGems (only owners)
 
+Bump version in `lib/cwb/version.rb`
+
 ```bash
-gem push cwb-0.1.X.gem
+rake build
+gem push pkg/cwb-0.1.X.gem
+git tag -a v0.1.X -m 'COMMENT'
 ```
 
 ## Contributing
