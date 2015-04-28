@@ -45,11 +45,12 @@ Bump version in `lib/cwb/version.rb`
 rake build
 gem push pkg/cwb-0.1.X.gem
 git tag -a v0.1.X -m 'COMMENT'
+git push origin --tags
 ```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/cwb/fork )
+1. Fork it ( https://github.com/sealuzh/cwb/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
